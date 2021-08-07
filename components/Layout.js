@@ -1,10 +1,12 @@
 import React from 'react'
 import NavBar from './NavBar'
+import Notify from './Notify'
 
 function Layout({ children, title, description }) {
   return (
     <div className="container">
-      <NavBar></NavBar>
+      <NavBar />
+      <Notify />
       {children}
     </div>
   )
