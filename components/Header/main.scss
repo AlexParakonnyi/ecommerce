@@ -1,0 +1,44 @@
+@import '../../styles/variables.scss';
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  height: $header-height-large;
+}
+
+.header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $header-backgorund;
+  z-index: 3;
+}
+.header__container {
+  padding: 0 10px;
+  height: 100%;
+}
+
+.header__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  z-index: 4;
+}
+
+.header__burger {
+  position: relative;
+}
+
+@media (max-width: $breakpoint-medium) {
+  .header {
+    height: $header-height-small;
+  }
+}

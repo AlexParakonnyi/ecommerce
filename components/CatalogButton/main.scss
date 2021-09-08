@@ -1,0 +1,36 @@
+.catalog {
+  background: $icon-background-hover;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  @media (max-width: $breakpoint-extra-small) {
+    display: none;
+  }
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+
+    path,
+    rect,
+    circle {
+      fill: $icon-color;
+    }
+  }
+
+  &__text {
+    color: $icon-color;
+    font-size: 1.2rem;
+    margin-left: 7px;
+    @media (max-width: $breakpoint-medium) {
+      display: none;
+    }
+  }
+}

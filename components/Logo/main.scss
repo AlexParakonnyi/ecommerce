@@ -1,0 +1,81 @@
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 10px;
+
+  @media (max-width: $breakpoint-extra-small) {
+    margin-right: 0px;
+  }
+}
+
+.logo__icon {
+  height: $header-height-large - 10px;
+  width: $header-height-large - 10px;
+  margin-right: 10px;
+
+  path {
+    fill: $logo-color;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    height: $header-height-small - 10px;
+    width: $header-height-large - 15px;
+    margin-right: 5px;
+  }
+
+  @media (max-width: $breakpoint-extra-small) {
+    height: $header-height-small - 15px;
+    width: $header-height-large - 25px;
+  }
+}
+
+.logo__text {
+  width: 150px;
+  path {
+    fill: $logo-color;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    width: 100px;
+  }
+}
+
+// .logo__text {
+//   font-family: 'mistral', 'Roboto', Helvetica, 'sans-serif';
+//   font-size: 35px;
+//   color: $logo-color;
+//   text-transform: uppercase;
+//   letter-spacing: 2px;
+//   white-space: nowrap;
+//   margin: 0 auto;
+//   text-align: center;
+//   background: #fff;
+//   padding: 0 10px;
+
+//   @media (max-width: $breakpoint-medium) {
+//     // display: none;
+//     font-size: 16px;
+//     letter-spacing: normal;
+//     white-space: normal;
+//   }
+
+//   @media (max-width: $breakpoint-extra-small) {
+//     width: 45px;
+
+//     // background: #000;
+//   }
+
+//   &:first-letter {
+//     font-size: 50px;
+
+//     @media (max-width: $breakpoint-medium) {
+//       font-size: 30px;
+//     }
+//   }
+// }
+
+.logo__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

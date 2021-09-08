@@ -1,0 +1,16 @@
+.nav-bar {
+  height: 100%;
+}
+
+.header__hav-bar {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+}
+
+.nav-bar--list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}

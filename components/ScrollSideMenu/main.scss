@@ -1,0 +1,22 @@
+.scroll-menu {
+  position: relative;
+  left: 0;
+  // top: $menu-offset-bottom-large;
+  width: 200px;
+  height: calc(100% - 60px);
+  z-index: 100;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin: 0;
+  width: 300px;
+
+  @media (max-width: $breakpoint-medium) {
+    // top: $menu-offset-bottom-small;
+    height: calc(100% - 50px);
+  }
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

@@ -1,0 +1,100 @@
+@import '../../styles/variables.scss';
+
+$scroll-color-1: #00ffe7;
+$scroll-color-2: #008aff;
+
+// $scroll-color-1: #a8c0ff;
+// $scroll-color-2: #3f2b96;
+
+.scrollLayout {
+  padding: 0px 25px 0 25px;
+  margin-top: $menu-offset-bottom-large;
+  height: calc(100vh - 80px);
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.scrollLayout.lock {
+  overflow: hidden;
+}
+
+.scrollLayout::-webkit-scrollbar {
+  width: 0;
+}
+
+.scrollLayout__scrollPath {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: calc(100% - $menu-height-large);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scrollLayout__progressbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 3px;
+  border-radius: 3px;
+  // background: linear-gradient(to top, #008aff, #00ffe7);
+  background: linear-gradient(to top, $scroll-color-2, $scroll-color-1);
+  animation: scrollAnimate 5s linear infinite;
+}
+
+@-webkit-keyframes scrollAnimate {
+  0%,
+  100% {
+    filter: hue-rotate(20deg);
+  }
+  50% {
+    filter: hue-rotate(60deg);
+  }
+}
+
+@keyframes scrollAnimate {
+  0%,
+  100% {
+    filter: hue-rotate(20deg);
+  }
+  50% {
+    filter: hue-rotate(60deg);
+  }
+}
+
+.scrollLayout__progressbar:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background: linear-gradient(to top, #008aff, #00ffe7);
+  background: linear-gradient(to top, $scroll-color-2, $scroll-color-1);
+  filter: blur(2px);
+}
+
+.scrollLayout__progressbar:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background: linear-gradient(to top, #008aff, #00ffe7);
+  background: linear-gradient(to top, $scroll-color-2, $scroll-color-1);
+  filter: blur(2px);
+}
+
+@media (max-width: 767px) {
+  .scrollLayout {
+    padding: 0px 15px 0 15px;
+    margin-top: $menu-offset-bottom-small;
+    height: calc(100vh - $menu-height-small);
+  }
+
+  .scrollLayout__scrollPath {
+    height: calc(100% - $menu-height-small);
+  }
+}

@@ -1,6 +1,69 @@
+/*-----null styles-----*/
+@import './null.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+html,
 body {
+  height: 100%;
   font-family: Roboto, sans-serif;
 }
 
-/*-------Loading--------*/
+body {
+  overflow: hidden;
+}
+
+body.lock {
+  // overflow: hidden;
+  padding-right: 17px;
+}
+
+img {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.content {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.content.lock {
+  // margin-right: 6px;
+}
+
+/*-----main scroll container-----*/
+@import '../components/ScrollLayout/main.scss';
+
+/*-----scrollSideMenu-----*/
+@import '../components/ScrollSideMenu/main.scss';
+
+/*-----Loading-----*/
 @import './loading.scss';
+
+/*-----Header-----*/
+@import '../components/Header/main.scss';
+
+/*-----Search-----*/
+@import '../components/Search/main.scss';
+
+/*-----BurgerMenu-----*/
+@import '../components/BurgerButton/main.scss';
+
+/*-----CatalogButton-----*/
+@import '../components/CatalogButton/main.scss';
+
+/*-----Logo-----*/
+@import '../components/Logo/main.scss';
+
+/*-----SideMenu-----*/
+@import '../components/SideMenu/main.scss';
+
+/*-----NavBar-----*/
+@import '../components/NavBar/main.scss';
+
+/*-----Menu-----*/
+@import '../components/Menu/main.scss';
+
+/*-----ItemMenu-----*/
+@import '../components/ItemMenu/main.scss';

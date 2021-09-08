@@ -18,7 +18,7 @@ const Register = () => {
   const { name, email, password, cf_password } = userData
   const [check, setCheck] = useState(false)
 
-  const [state, dispatch] = useContext(DataContext)
+  const { state, dispatch } = useContext(DataContext)
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target

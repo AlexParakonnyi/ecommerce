@@ -10,7 +10,7 @@ const Loading = () => {
         zIndex: 9,
       }}
     >
-      <svg width="205" height="250" viewBox="0 0 40 50">
+      <svg width="230" height="280" viewBox="0 0 40 50">
         <polygon
           strokeWidth="1"
           stroke="#fff"

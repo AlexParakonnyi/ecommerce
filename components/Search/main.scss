@@ -1,0 +1,99 @@
+@mixin iconSize($size) {
+  width: $size;
+  height: $size;
+}
+
+.search {
+  background: $icon-color;
+  display: flex;
+  border-radius: 4px;
+  height: 32px;
+  align-items: center;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 0 10px;
+
+  @media (max-width: $breakpoint-medium) {
+    height: 29px;
+  }
+
+  @media (max-width: $breakpoint-extra-small) {
+    display: none;
+  }
+
+  // @media (max-width: $breakpoint-extra-small) {
+  //   width: 40px;
+  //   height: 38px;
+  //   flex-grow: 0;
+  //   background: $header-backgorund;
+  // }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: $breakpoint-extra-small) {
+      display: none;
+    }
+  }
+
+  &__icon-wrapper {
+    @include iconSize(17px);
+    margin: 0 5px;
+
+    // @media (max-width: $breakpoint-extra-small) {
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   width: 100%;
+    //   height: 100%;
+    // }
+  }
+
+  &__icon {
+    @include iconSize(17px);
+    path {
+      fill: $icon-background-hover;
+    }
+
+    // @media (max-width: $breakpoint-extra-small) {
+    //   @include iconSize(25px);
+    //   path {
+    //     fill: $icon-color;
+    //   }
+    // }
+  }
+
+  &__action {
+  }
+}
+
+.action {
+  background: #cc2900;
+  height: 100%;
+  padding: 0 7px;
+  border: 1px solid #cc2900;
+
+  @media (max-width: $breakpoint-medium) {
+    display: none;
+  }
+
+  &:hover {
+    background-color: $logo-color;
+  }
+
+  &__text {
+    color: #e6dcd9;
+    font-size: 1.1rem;
+  }
+}
+
+.search--extra-small .icon-link {
+  display: none;
+
+  @media (max-width: $breakpoint-extra-small) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

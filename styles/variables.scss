@@ -1,0 +1,29 @@
+$breakpoint-extra-small: 480px;
+$breakpoint-small: 540px;
+$breakpoint-medium: 767px;
+$breakpoint-large: 960px;
+
+// $breackpoint-small: 767px;
+
+$gray--lighter: #1c3025;
+
+/*-----Nav Bar-----*/
+// $header-backgorund: floralwhite;
+$header-backgorund: #221f1f;
+$link-color: #100604;
+
+$icon-color: #fefefe;
+$icon-color-sideMenu: #221f1f;
+$icon-background: $header-backgorund;
+$icon-background-hover: #4e4c4c;
+// $icon-background-sideMenu: rgba(128, 253, 255, 0.4);
+$icon-background-sideMenu: rgba(199, 198, 196, 0.6);
+$icon-background-hover-sideMenu: rgba(0, 100, 102, 0.5);
+
+$logo-color: #ff3300;
+
+$header-height-large: 60px;
+$header-height-small: 50px;
+
+$menu-offset-bottom-large: 60px;
+$menu-offset-bottom-small: 50px;
