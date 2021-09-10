@@ -1,0 +1,14 @@
+catalog of goods
+bread crumbs
+profile
+card of product
+cart
+order
+payment
+fix scroll. State instead of change dom tree
+home page: slider for bunners
+slider for new and special goods
+comparison of goods
+liked
+filter
+search

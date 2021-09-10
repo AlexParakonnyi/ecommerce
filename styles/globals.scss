@@ -1,6 +1,8 @@
 /*-----null styles-----*/
 @import './null.css';
 
+@import './variables.scss';
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
 html,
@@ -23,9 +25,14 @@ img {
   object-fit: cover;
 }
 
-.content {
+.c-container {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
+  width: $breakpoint-large;
+  margin: 0 auto;
+  @media (max-width: $breakpoint-large) {
+    width: 100%;
+  }
 }
 
 .content.lock {

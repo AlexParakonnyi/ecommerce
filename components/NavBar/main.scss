@@ -13,4 +13,8 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+
+  @media (max-width: $breakpoint-extra-small) {
+    flex-grow: 0;
+  }
 }

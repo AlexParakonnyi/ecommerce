@@ -14,17 +14,17 @@ const Header = () => {
     <div className="wrapper">
       <header className="header">
         <div className="header__container">
-          <div className="header__body container">
+          <div className="header__body c-container">
+            <BurgerButton classList={'header__burger'} />
             <Logo classList={'header__logo'} />
-            <Catalog />
             <NavBar classList="header__nav-bar nav-bar--list">
+              <Catalog />
               <Search />
               <Menu
                 classList="header__menu list-menu--hide-extra-small"
                 menu={menuModel}
                 hideItemtext={true}
               />
-              <BurgerButton classList={'header__burger'} />
             </NavBar>
           </div>
         </div>
