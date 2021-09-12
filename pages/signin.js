@@ -5,9 +5,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import Cookie from 'js-cookie'
 import ACTIONS from '../Store/Actions'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
+import rememberUser from '../utils/rememberUser'
 
 const Signin = () => {
   const initialState = {
@@ -18,13 +18,22 @@ const Signin = () => {
   const [userData, setUserData] = useState(initialState)
   const { email, password } = userData
   const [check, setCheck] = useState(false)
+  const [pressSubmit, setPressSubmit] = useState(false)
+  const router = useRouter()
 
   const { state, dispatch } = useContext(DataContext)
   const { auth } = state
 
   useEffect(() => {
-    if (auth.user) Router.push('/profile')
-  }, [auth])
+    if (Object.keys(auth).length == 0) return
+
+    if (pressSubmit) {
+      setPressSubmit(false)
+      router.push('/')
+    } else {
+      router.push('/profile')
+    }
+  }, [auth, pressSubmit])
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target
@@ -36,14 +45,6 @@ const Signin = () => {
     setCheck(() => {
       return !check
     })
-  }
-
-  const rememberUser = (res) => {
-    Cookie.set('refreshtoken', res.refresh_token, {
-      path: 'api/auth/accessToken',
-      expires: 7,
-    })
-    localStorage.setItem('firstLogin', true)
   }
 
   const handleSubmit = async (e) => {
@@ -70,6 +71,8 @@ const Signin = () => {
     })
 
     check && rememberUser(res)
+
+    setPressSubmit(true)
   }
 
   return (
@@ -121,10 +124,20 @@ const Signin = () => {
             value="false"
             onChange={handleCheck}
           />
-          <label className="form-check-label" htmlFor="Check1">
-            <span style={{ fontSize: '1rem', lineHeight: '2rem' }}>
+          <label
+            className="form-check-label"
+            htmlFor="Check1"
+            style={{
+              fontSize: '1.1rem',
+              lineHeight: '1.8rem',
+              fontFamily: 'Roboto, Nunito, Helvetica, Arial, sats-serif',
+              cursor: 'pointer',
+              display: 'block',
+            }}
+          >
+            <small>
               <b>Запомнить меня</b>
-            </span>
+            </small>
           </label>
         </div>
         <button type="submit" className="btn w-100 btn-outline-dark">
@@ -139,7 +152,7 @@ const Signin = () => {
           </Link>
         </p>
       </form>
-      <p>
+      <p style={{ fontFamily: 'Roboto, Nunito' }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
         voluptatem quo corporis maxime ut, exercitationem perferendis fugiat
         ducimus! Odit totam natus tempora laudantium molestiae, laborum quod
