@@ -1,7 +1,8 @@
 catalog of goods
 bread crumbs
-profile
 card of product
+translate
+profile
 cart
 order
 payment

@@ -17,8 +17,8 @@ const menuModel = [
   },
   {
     Icon: User,
-    href: '/signin',
-    text: `Вход`,
+    href: '/profile',
+    text: `Профиль`,
   },
   {
     Icon: Catalog,

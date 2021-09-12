@@ -54,7 +54,7 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <div className="c-container">
       <Head>
         <title>Регистрация</title>
       </Head>

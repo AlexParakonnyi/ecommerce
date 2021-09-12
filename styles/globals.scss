@@ -3,12 +3,12 @@
 
 @import './variables.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import './fonts.scss';
 
 html,
 body {
   height: 100%;
-  font-family: Roboto, sans-serif;
+  font-family: 'CenturyGothic', 'Nunito', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -27,16 +27,13 @@ img {
 
 .c-container {
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  width: $breakpoint-large;
+  // font-family: 'CenturyGothic', 'Nunito', Arial, Helvetica, sans-serif;
+  width: $breakpoint-extra-large;
   margin: 0 auto;
-  @media (max-width: $breakpoint-large) {
+
+  @media (max-width: $breakpoint-extra-large) {
     width: 100%;
   }
-}
-
-.content.lock {
-  // margin-right: 6px;
 }
 
 /*-----main scroll container-----*/

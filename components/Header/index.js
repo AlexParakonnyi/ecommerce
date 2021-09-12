@@ -1,6 +1,4 @@
 import React from 'react'
-import { DataContext } from '../../Store/GlobalState'
-import ACTIONS from '../../Store/Actions'
 import Menu from '../Menu'
 import NavBar from '../NavBar'
 import menuModel from './menuModel'

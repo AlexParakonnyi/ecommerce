@@ -9,3 +9,23 @@
 //   font-style: normal;
 //   font-display: swap;
 // }
+
+// @font-face {
+//   font-family: 'fontcfce6abbbff0099b15691345d8b94dcc';
+
+//   src: url('https://nomail.com.ua/files/eot/cfce6abbbff0099b15691345d8b94dcc.eot?#iefix')
+//       format('embedded-opentype'),
+//     url('https://nomail.com.ua/files/woff/cfce6abbbff0099b15691345d8b94dcc.woff')
+//       format('woff'),
+//     url('https://nomail.com.ua/files/woff2/cfce6abbbff0099b15691345d8b94dcc.woff2')
+//       format('woff2');
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+@font-face {
+  font-family: 'CenturyGothic';
+  src: local('CenturyGothic'),
+    url('https://nomail.com.ua/files/woff/cfce6abbbff0099b15691345d8b94dcc.woff')
+      format('woff');
+}

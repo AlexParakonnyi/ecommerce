@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { DataContext } from '../Store/GlobalState'
 import { postData } from '../utils/fetchData'
 import Head from 'next/head'
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Cookie from 'js-cookie'
 import ACTIONS from '../Store/Actions'
+import Router from 'next/router'
 
 const Signin = () => {
   const initialState = {
@@ -19,6 +20,11 @@ const Signin = () => {
   const [check, setCheck] = useState(false)
 
   const { state, dispatch } = useContext(DataContext)
+  const { auth } = state
+
+  useEffect(() => {
+    if (auth.user) Router.push('/profile')
+  }, [auth])
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target
@@ -30,6 +36,14 @@ const Signin = () => {
     setCheck(() => {
       return !check
     })
+  }
+
+  const rememberUser = (res) => {
+    Cookie.set('refreshtoken', res.refresh_token, {
+      path: 'api/auth/accessToken',
+      expires: 7,
+    })
+    localStorage.setItem('firstLogin', true)
   }
 
   const handleSubmit = async (e) => {
@@ -55,12 +69,7 @@ const Signin = () => {
       payload: { token: res.access_token, user: res.user },
     })
 
-    Cookie.set('refreshtoken', res.refresh_token, {
-      path: 'api/auth/accessToken',
-      expires: 7,
-    })
-
-    localStorage.setItem('firstLogin', true)
+    check && rememberUser(res)
   }
 
   return (
@@ -113,9 +122,9 @@ const Signin = () => {
             onChange={handleCheck}
           />
           <label className="form-check-label" htmlFor="Check1">
-            <small style={{ lineHeight: '1.5rem' }}>
+            <span style={{ fontSize: '1rem', lineHeight: '2rem' }}>
               <b>Запомнить меня</b>
-            </small>
+            </span>
           </label>
         </div>
         <button type="submit" className="btn w-100 btn-outline-dark">

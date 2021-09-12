@@ -5,7 +5,7 @@ import User from '../../public/img/icons/user.svg'
 const menuModel = [
   {
     Icon: User,
-    href: '/signin',
+    href: '/profile',
     text: `Вход`,
   },
   {

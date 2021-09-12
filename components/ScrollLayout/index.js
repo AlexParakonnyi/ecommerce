@@ -34,7 +34,7 @@ const ScrollLayout = ({ children }) => {
     >
       <div className="scrollLayout__progressbar" ref={progress}></div>
       <div className="scrollLayout__scrollPath"></div>
-      <section className="container">{children}</section>
+      <section className="c-container">{children}</section>
     </div>
   )
 }

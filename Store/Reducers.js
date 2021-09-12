@@ -42,6 +42,16 @@ const reducers = (state, action) => {
         ...state,
         burgerRef: action.payload,
       }
+    case ACTIONS.LOADING_ON:
+      return {
+        ...state,
+        loading: true,
+      }
+    case ACTIONS.LOADING_OFF:
+      return {
+        ...state,
+        loading: false,
+      }
     default:
       return state
   }
