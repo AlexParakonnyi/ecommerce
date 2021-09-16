@@ -3,7 +3,7 @@ import Menu from '../Menu'
 import { DataContext } from '../../Store/GlobalState'
 import ACTIONS from '../../Store/Actions'
 import menuModel from './menuModel'
-import useOuterClick from '../../utils/hooks/useOuterClick'
+import useOuterClick from '../../hooks/useOuterClick'
 import ScrollSideMenu from '../ScrollSideMenu'
 import NavBar from '../NavBar'
 
