@@ -29,6 +29,7 @@ img {
   font-size: 18px;
   // font-family: 'CenturyGothic', 'Nunito', Arial, Helvetica, sans-serif;
   width: $breakpoint-extra-large;
+  // border: 1px solid #000;
   margin: 0 auto;
 
   @media (max-width: $breakpoint-extra-large) {
@@ -71,3 +72,9 @@ img {
 
 /*-----ItemMenu-----*/
 @import '../components/ItemMenu/main.scss';
+
+/*-----ProductsConteiner-----*/
+@import '../components/ProductsConteiner/main.scss';
+
+/*-----CategoryItem-----*/
+@import '../components/Category/main.scss';

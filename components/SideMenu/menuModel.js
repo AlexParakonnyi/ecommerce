@@ -22,7 +22,7 @@ const menuModel = [
   },
   {
     Icon: Catalog,
-    href: '/signin',
+    href: '/catalog',
     text: 'Каталог',
   },
   {

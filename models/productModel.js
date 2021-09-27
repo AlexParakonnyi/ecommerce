@@ -21,6 +21,22 @@ const productSchema = new mongoose.Schema({
       },
     },
   ],
+  chpu: [
+    {
+      date: {
+        type: Date,
+        required: true,
+      },
+      value: {
+        type: String,
+        // required: true,
+      },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   parent_id: [
     {
       date: {

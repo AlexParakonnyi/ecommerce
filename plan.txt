@@ -1,16 +1,17 @@
-catalog of goods
-bread crumbs
-card of product
-translate
+catalog of goods *
+bread crumbs *
+card of product *
+translate *
 profile
 cart
 order
 payment
-fix scroll. State instead of change dom tree
+fix scroll. State instead of change dom tree, circle to move scroll, cursor pointer
 home page: slider for bunners
 slider for new and special goods
 comparison of goods
 liked
 filter
 search
-ssh
+ssl certificate
+easy auth with every response from server and check it in every request on server

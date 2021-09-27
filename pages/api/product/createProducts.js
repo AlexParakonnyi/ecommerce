@@ -21,6 +21,7 @@ const createProduct = async (req, res) => {
       const {
         id,
         name,
+        chpu,
         parent_id,
         currency_id,
         sale,
@@ -44,6 +45,7 @@ const createProduct = async (req, res) => {
         const newProducts = new Products({
           id,
           name,
+          chpu,
           parent_id,
           currency_id,
           sale,

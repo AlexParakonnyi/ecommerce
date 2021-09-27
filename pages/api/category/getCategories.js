@@ -1,56 +1,22 @@
-import Categories from '../../../models/categoryModel'
+import searchIdByChpu from './searchIdByChpu'
+import searchCategories from './searchCategories'
 
 const getCategories = async (req, res) => {
-  try {
-    const categories = await Categories.aggregate([
-      {
-        $project: {
-          _id: '$id',
-          name: {
-            $last: '$name',
-          },
-          parent_id: {
-            $last: '$parent_id',
-          },
-          image: {
-            $last: '$image',
-          },
-          removed: {
-            $last: '$removed',
-          },
-        },
-      },
-      {
-        $project: {
-          _name: '$name.value',
-          _parent_id: '$parent_id.value',
-          _image: '$image.value',
-          _removed: '$removed.value',
-        },
-      },
-      {
-        $project: {
-          name: 0,
-          parent_id: 0,
-          image: 0,
-          removed: 0,
-        },
-      },
-      {
-        $match: {
-          _parent_id: '',
-        },
-      },
-    ])
+  const params = req.query
+  const chpu = params?.productChpu
+  const parent = !!chpu ? await searchIdByChpu({ chpu }) : ''
 
-    res.json({
-      status: 'success',
-      result: categories.length,
-      categories,
-    })
-  } catch (err) {
+  const { categories, err } = await searchCategories(parent)
+
+  if (err) {
     return res.status(500).json({ err: err.message })
   }
+
+  res.json({
+    status: 'success',
+    result: categories.length,
+    categories,
+  })
 }
 
 export default getCategories

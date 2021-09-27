@@ -21,6 +21,22 @@ const categorySchema = new mongoose.Schema({
       },
     },
   ],
+  chpu: [
+    {
+      value: {
+        type: String,
+        required: true,
+      },
+      date: {
+        type: Date,
+        required: true,
+      },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   parent_id: [
     {
       value: {

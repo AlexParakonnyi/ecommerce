@@ -18,7 +18,6 @@ function Layout({ children, title, description }) {
   return (
     <ScrollLayout>
       <Header />
-      {/* {sideMenuActive ? <SideMenu /> : null} */}
       <SideMenu />
       <Notify />
       {loading && <Loading />}
