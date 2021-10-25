@@ -1,4 +1,5 @@
 import Products from '../../../models/productModel'
+import processingImage from '../../../utils/processingImage'
 
 const findProduct = async (el) => {
   try {
@@ -10,6 +11,8 @@ const findProduct = async (el) => {
 }
 
 const createProduct = async (req, res) => {
+  const EMPTY_PHOTO = process.env.EMPTY_PHOTO
+
   try {
     const val = req.body.products
     const resObj = []
@@ -33,8 +36,21 @@ const createProduct = async (req, res) => {
         attributes,
         labels,
         unit_id,
+        description,
+        keys,
+        title,
+        metaDescription,
+        breadcrumbs,
         removed,
       } = el
+
+      const lastImage = images[0]
+
+      //download, convert and save all images of product
+      const convertedImages = {
+        ...lastImage,
+        value: await processingImage(lastImage.value),
+      }
 
       const res = await findProduct(el)
 
@@ -50,17 +66,22 @@ const createProduct = async (req, res) => {
           currency_id,
           sale,
           guarantee_id,
-          images,
+          images: convertedImages,
           codes,
           providers,
           prices,
           attributes,
           labels,
           unit_id,
+          description,
+          keys,
+          title,
+          metaDescription,
+          breadcrumbs,
           removed,
         })
 
-        newProducts.save((err) => {
+        await newProducts.save((err) => {
           if (err) throw err
         })
 
@@ -76,6 +97,7 @@ const createProduct = async (req, res) => {
       result: resObj,
     })
   } catch (err) {
+    console.log(err)
     return res.status(500).json({ err: err.message })
   }
 }

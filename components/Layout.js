@@ -6,6 +6,7 @@ import ScrollLayout from './ScrollLayout'
 import ACTIONS from '../Store/Actions'
 import SideMenu from './SideMenu'
 import Loading from './Loading'
+import Coverer from './Coverer'
 
 function Layout({ children, title, description }) {
   const { state, dispatch } = useContext(DataContext)
@@ -19,6 +20,7 @@ function Layout({ children, title, description }) {
     <ScrollLayout>
       <Header />
       <SideMenu />
+      {sideMenuActive && <Coverer />}
       <Notify />
       {loading && <Loading />}
       {children}

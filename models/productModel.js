@@ -103,7 +103,7 @@ const productSchema = new mongoose.Schema({
     {
       date: {
         type: Date,
-        required: true,
+        // required: true,
       },
       value: [
         {
@@ -114,7 +114,7 @@ const productSchema = new mongoose.Schema({
       ],
       updated_by: {
         type: String,
-        required: true,
+        // required: true,
       },
     },
   ],
@@ -240,6 +240,95 @@ const productSchema = new mongoose.Schema({
         type: String,
         requierd: true,
       },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  description: [
+    {
+      date: {
+        type: Date,
+        required: true,
+      },
+      value: {
+        type: String,
+        requierd: true,
+      },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  keys: [
+    {
+      date: {
+        type: Date,
+        required: true,
+      },
+      value: {
+        type: String,
+        requierd: true,
+      },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  title: [
+    {
+      date: {
+        type: Date,
+        required: true,
+      },
+      value: {
+        type: String,
+        requierd: true,
+      },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  metaDescription: [
+    {
+      date: {
+        type: Date,
+        required: true,
+      },
+      value: {
+        type: String,
+        requierd: true,
+      },
+      updated_by: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  breadcrumbs: [
+    {
+      date: {
+        type: Date,
+        required: true,
+      },
+      value: [
+        {
+          id: {
+            type: String,
+          },
+          name: {
+            type: String,
+          },
+          chpu: {
+            type: String,
+          },
+        },
+      ],
       updated_by: {
         type: String,
         required: true,

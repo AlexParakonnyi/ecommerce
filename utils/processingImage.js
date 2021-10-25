@@ -8,49 +8,73 @@ import connectDB from '../utils/connectDB'
 connectDB()
 
 /*-----------------------------------------------------*/
-async function processingImage(imgName) {
-  const url = `${process.env.IMAGE_PATH}${imgName}`
-  // const url = imgName
-  const imgPath = `./public/img/products/`
-  const tmpFileName = `./public/img/tmp/${Date.now()}.webp`
-  const fileNameObj = path.parse(tmpFileName)
+async function processingImage(images) {
+  const imgPath = process.env.IMAGE_LOCAL_STORAGE_PATH
 
-  try {
-    const buffer = await downloadFile(url)
-    // const meta = await sharp(buffer).metadata()
-    // console.log(meta)
-    await sharp(buffer).resize(1000).webp({ quality: 80 }).toFile(tmpFileName)
-    const hex = getHex({ fileName: tmpFileName })
+  const res = await Promise.all(
+    images.map(async (el) => {
+      try {
+        const url = `${process.env.IMAGE_PATH}${el.name}`
+        const buffer = await downloadFile(url)
+        const hex = getHex({ buffer })
+        const tmpFileName = `./public/img/tmp/${hex}.webp`
+        const fileNameObj = path.parse(tmpFileName)
 
-    const res = await findHex(hex)
-    if (res) {
-      fs.unlink(tmpFileName, (err) => {
-        if (err) throw err
-      })
-      // console.log(`file ${name} has already existed`)
-      return res.name
-    } else {
-      const newImageHex = new imageHexModel({
-        name: String(fileNameObj.base),
-        originName: imgName,
-        hex: hex,
-        url: url,
-      })
-      await newImageHex.save((err) => {
-        if (err) {
-          throw err
+        // const meta = await sharp(buffer).metadata()
+        // console.log(meta)
+        await sharp(buffer)
+          .resize(1000)
+          .webp({ quality: 80 })
+          .toFile(tmpFileName)
+
+        const res = await findHex(hex)
+
+        if (res) {
+          fs.unlink(tmpFileName, (err) => {
+            if (err) console.log(`Failed delete file ${err}`)
+          })
+
+          return { name: res.name }
+        } else {
+          const newImageHex = new imageHexModel({
+            name: String(fileNameObj.base),
+            originName: el.name,
+            hex: hex,
+            url: url,
+          })
+
+          await newImageHex.save((err) => {
+            if (err) {
+              throw err
+            }
+          })
         }
-      })
-    }
 
-    fs.rename(tmpFileName, `${imgPath}${fileNameObj.base}`)
+        fs.rename(tmpFileName, `${imgPath}${fileNameObj.base}`)
 
-    console.log(`Image ${imgName} successfully saved`)
+        console.log(`Image ${el.StringName} successfully saved`)
 
-    return String(fileNameObj.base)
-  } catch (err) {
-    console.log(`Failed downloading image: ${imgName} ${err.message}`)
-  }
+        return { name: String(fileNameObj.base) }
+      } catch (err) {
+        console.log(`Failed downloading image: ${el.Name} ${err.message}`)
+        return { name: null }
+      }
+    })
+  )
+
+  const resFiltered = filterArr(res)
+
+  return resFiltered.length ? resFiltered : [{ name: process.env.EMPTY_PHOTO }]
+}
+
+/*-----------------------------------------------------*/
+const filterArr = (arr) => {
+  const values = arr.map((el) => el.name)
+  const arrFromSet = Array.from(new Set(values))
+  const filteredArrFromNull = arrFromSet.filter((el) => !!el)
+  const res = filteredArrFromNull.map((el) => ({ name: el }))
+
+  return res
 }
 
 /*-----------------------------------------------------*/

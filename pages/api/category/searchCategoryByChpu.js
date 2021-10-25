@@ -1,8 +1,8 @@
 import Categories from '../../../models/categoryModel'
 
-const searchIdByChpu = async ({ chpu } = {}) => {
+const searchCategoryByChpu = async ({ chpu } = { chpu: '' }) => {
   try {
-    const categories = await Categories.aggregate([
+    const category = await Categories.aggregate([
       {
         $project: {
           _id: '$id',
@@ -18,6 +18,21 @@ const searchIdByChpu = async ({ chpu } = {}) => {
           image: {
             $last: '$image',
           },
+          description: {
+            $last: '$description',
+          },
+          keys: {
+            $last: '$keys',
+          },
+          title: {
+            $last: '$title',
+          },
+          metaDescription: {
+            $last: '$metaDescription',
+          },
+          breadcrumbs: {
+            $last: '$breadcrumbs',
+          },
           removed: {
             $last: '$removed',
           },
@@ -31,6 +46,11 @@ const searchIdByChpu = async ({ chpu } = {}) => {
           chpu: '$chpu.value',
           parent_id: '$parent_id.value',
           image: '$image.value',
+          keys: '$keys.value',
+          description: '$description.value',
+          title: '$title.value',
+          metaDescription: '$metaDescription.value',
+          breadcrumbs: '$breadcrumbs.value',
           removed: '$removed.value',
         },
       },
@@ -48,11 +68,11 @@ const searchIdByChpu = async ({ chpu } = {}) => {
       { $limit: 1 },
     ])
 
-    return categories[categories.length - 1]?.id
+    return { category: category[category.length - 1] }
   } catch (err) {
     console.log(`Failed find category by chpu ${err}`)
-    return ''
+    return { errCategory }
   }
 }
 
-export default searchIdByChpu
+export default searchCategoryByChpu

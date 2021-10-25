@@ -5,7 +5,7 @@ import { DataProvider } from '../Store/GlobalState'
 export default function MyApp({ Component, pageProps }) {
   return (
     <DataProvider value={{}}>
-      <Layout title={''}>
+      <Layout>
         {/* {console.log('Page', pageProps, Component.name)} */}
         <Component {...pageProps} />
       </Layout>

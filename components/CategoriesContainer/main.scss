@@ -1,10 +1,11 @@
 .c-catalog__wrapper {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: minmax(250px, auto);
   gap: 30px;
   max-width: 100%;
-  padding: 30px;
+  padding: 20px;
 }
 
 .c-catalog {
@@ -12,4 +13,11 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.c-catalog__description {
+  font-size: 1.1rem;
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  color: $grey-text;
+  margin-top: 20px;
 }

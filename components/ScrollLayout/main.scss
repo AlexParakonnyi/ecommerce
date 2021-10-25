@@ -13,6 +13,12 @@ $scroll-color-2: #008aff;
   overflow: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
+
+  @media (max-width: $breakpoint-medium) {
+    padding: 0px 15px 0 15px;
+    margin-top: $menu-offset-bottom-small;
+    height: calc(100vh - $menu-height-small);
+  }
 }
 
 .scrollLayout.lock {
@@ -25,22 +31,31 @@ $scroll-color-2: #008aff;
 
 .scrollLayout__scrollPath {
   position: fixed;
-  top: 0;
+  top: 60px;
   right: 0;
   width: 3px;
-  height: calc(100% - $menu-height-large);
-  background: rgba(255, 255, 255, 0.05);
+  height: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.2);
+
+  @media (max-width: $breakpoint-medium) {
+    height: calc(100% - 50px);
+    top: 50px;
+  }
 }
 
 .scrollLayout__progressbar {
   position: fixed;
-  top: 0;
+  top: 60px;
   right: 0;
   width: 3px;
   border-radius: 3px;
   // background: linear-gradient(to top, #008aff, #00ffe7);
   background: linear-gradient(to top, $scroll-color-2, $scroll-color-1);
   animation: scrollAnimate 5s linear infinite;
+
+  @media (max-width: $breakpoint-medium) {
+    top: 50px;
+  }
 }
 
 @-webkit-keyframes scrollAnimate {
@@ -85,16 +100,4 @@ $scroll-color-2: #008aff;
   // background: linear-gradient(to top, #008aff, #00ffe7);
   background: linear-gradient(to top, $scroll-color-2, $scroll-color-1);
   filter: blur(2px);
-}
-
-@media (max-width: 767px) {
-  .scrollLayout {
-    padding: 0px 15px 0 15px;
-    margin-top: $menu-offset-bottom-small;
-    height: calc(100vh - $menu-height-small);
-  }
-
-  .scrollLayout__scrollPath {
-    height: calc(100% - $menu-height-small);
-  }
 }

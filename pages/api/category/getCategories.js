@@ -1,11 +1,9 @@
-import searchIdByChpu from './searchIdByChpu'
+import searchCategoryByChpu from './searchCategoryByChpu'
 import searchCategories from './searchCategories'
 
-const getCategories = async (req, res) => {
-  const params = req.query
-  const chpu = params?.productChpu
-  const parent = !!chpu ? await searchIdByChpu({ chpu }) : ''
-
+const getCategories = async (req, res, parentChpu = '') => {
+  const { category } = await searchCategoryByChpu({ chpu: parentChpu })
+  const parent = category?.id || ''
   const { categories, err } = await searchCategories(parent)
 
   if (err) {
@@ -16,6 +14,7 @@ const getCategories = async (req, res) => {
     status: 'success',
     result: categories.length,
     categories,
+    category,
   })
 }
 

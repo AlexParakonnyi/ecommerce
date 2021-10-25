@@ -1,8 +1,8 @@
-import Categories from '../../../models/categoryModel'
+import Products from '../../../models/productModel'
 
-const searchCategories = async (parent = '') => {
+const searchProducts = async ({ parent = '' } = { parent: '' }) => {
   try {
-    const categories = await Categories.aggregate([
+    const products = await Products.aggregate([
       {
         $project: {
           _id: '$id',
@@ -15,8 +15,26 @@ const searchCategories = async (parent = '') => {
           parent_id: {
             $last: '$parent_id',
           },
+          sale: {
+            $last: '$sale',
+          },
+          currency_id: {
+            $last: '$currency_id',
+          },
+          guarantee_id: {
+            $last: '$guarantee_id',
+          },
           images: {
             $last: '$images',
+          },
+          prices: {
+            $last: '$prices',
+          },
+          attributes: {
+            $last: '$attributes',
+          },
+          unit_id: {
+            $last: '$unit_id',
           },
           description: {
             $last: '$description',
@@ -45,9 +63,15 @@ const searchCategories = async (parent = '') => {
           name: '$name.value',
           chpu: '$chpu.value',
           parent_id: '$parent_id.value',
+          sale: '$sale.value',
+          currency_id: '$currency_id.value',
+          guarantee_id: '$guarantee_id.value',
           images: '$images.value',
-          keys: '$keys.value',
+          prices: '$prices.value',
+          attributes: '$attributes.value',
+          unit_id: '$unit_id.value',
           description: '$description.value',
+          keys: '$keys.value',
           title: '$title.value',
           metaDescription: '$metaDescription.value',
           breadcrumbs: '$breadcrumbs.value',
@@ -63,14 +87,25 @@ const searchCategories = async (parent = '') => {
       {
         $project: {
           removed: 0,
+          codes: 0,
+          labels: 0,
+          providers: 0,
+        },
+      },
+      {
+        $unwind: '$prices',
+      },
+      {
+        $match: {
+          'prices.price_id': '3',
         },
       },
     ])
 
-    return { categories }
-  } catch (err) {
-    return { err }
+    return { products }
+  } catch (errProducts) {
+    return { errProducts }
   }
 }
 
-export default searchCategories
+export default searchProducts

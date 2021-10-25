@@ -1,27 +1,71 @@
 import React, { useState, useEffect } from 'react'
 import { getData } from '../utils/fetchData'
-import ProductsConteiner from '../components/ProductsConteiner'
+import CategoriesContainer from '../components/CategoriesContainer'
+import ProductsContainer from '../components/ProductsContainer'
+import Breadcrumbs from '../components/Breadcrumbs'
 
-const Group = (props) => {
-  const [categories, setCategories] = useState(props.categoryProps)
+const Group = ({
+  categoriesProps = '',
+  parentProps = '',
+  productsProps = [],
+  breadcrumbProps,
+}) => {
+  const [categories, setCategories] = useState(categoriesProps)
+  const [parent, setParent] = useState(parentProps)
+  const [products, setProducts] = useState(productsProps)
+  const initBreadcrumbs = [
+    { name: 'home', chpu: '/' },
+    { name: 'Каталог', chpu: 'catalog' },
+  ]
+  const [breadcrumbs, setBreadcrambs] = useState(initBreadcrumbs)
 
   useEffect(() => {
-    setCategories(props.categoryProps)
-  }, [props.categoryProps])
+    setCategories(categoriesProps)
+  }, [categoriesProps])
 
-  return <ProductsConteiner categories={categories} />
+  useEffect(() => {
+    setParent(parentProps)
+  }, [parentProps])
+
+  useEffect(() => {
+    setProducts(productsProps)
+  }, [productsProps])
+
+  useEffect(() => {
+    setBreadcrambs(() => {
+      return initBreadcrumbs.concat(breadcrumbProps)
+    })
+  }, [breadcrumbProps])
+
+  return (
+    <>
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      {parent === '' ? null : (
+        <CategoriesContainer categories={categories} parent={parent}>
+          <ProductsContainer products={products} />
+        </CategoriesContainer>
+      )}
+    </>
+  )
 }
 
 export async function getServerSideProps(context) {
-  const chpu = encodeURIComponent(context.query.product)
+  const parentChpu = encodeURIComponent(context.query.product)
+  const urlParent = `/category?parentChpu=${parentChpu}`
+  const resParent = await getData(urlParent)
 
-  const url = `/category?productChpu=${chpu}`
-  const resCat = await getData(url)
+  const urlParentProducts = `/product?parentChpu=${parentChpu}`
+  const resProducts = await getData(urlParentProducts)
+
+  if (!resParent.category) return { notFound: true }
 
   return {
     props: {
-      categoryProps: resCat.categories,
-      result: resCat.result,
+      categoriesProps: resParent.categories,
+      result: resParent.result,
+      parentProps: resParent.category,
+      productsProps: resProducts.products,
+      breadcrumbProps: resParent.category.breadcrumbs,
     }, // will be passed to the page component as props
   }
 }

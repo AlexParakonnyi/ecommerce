@@ -1,19 +1,29 @@
 import { useState, useEffect } from 'react'
 import { getData } from '../../utils/fetchData'
-import ProductsConteiner from '../../components/ProductsConteiner'
+import CategoriesContainer from '../../components/CategoriesContainer'
+import Breadcrumbs from '../../components/Breadcrumbs'
 
 const Catalog = (props) => {
   const [categories, setCategories] = useState(props.categoryProps)
+  const initBreadcrumbs = [
+    { name: 'home', chpu: '/' },
+    { name: 'Каталог', chpu: 'catalog' },
+  ]
 
   useEffect(() => {
     setCategories(props.categoryProps)
   }, [props.categoryProps])
 
-  return <ProductsConteiner categories={categories} />
+  return (
+    <>
+      <Breadcrumbs breadcrumbs={initBreadcrumbs} />
+      <CategoriesContainer categories={categories} />
+    </>
+  )
 }
 
 export async function getServerSideProps() {
-  const res = await getData('category')
+  const res = await getData(`category?parentChpu=''`)
   return {
     props: {
       categoryProps: res.categories,

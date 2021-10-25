@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const CategoryItem = ({ category }) => {
+  const initialHref = () => `/img/products/${category?.images[0]?.name}`
+  const [imageHref, setImageHref] = useState(() => {
+    return initialHref()
+  })
+
   return (
     <Link href={`/${category.chpu}`}>
       <a className="link-block">
@@ -11,7 +16,7 @@ const CategoryItem = ({ category }) => {
             {category.image !== '' && (
               <Image
                 className="c-category__image"
-                src={`/img/products/${category.image}`}
+                src={imageHref}
                 alt={category.name}
                 width={168}
                 height={168}

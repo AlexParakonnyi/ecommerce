@@ -73,8 +73,19 @@ img {
 /*-----ItemMenu-----*/
 @import '../components/ItemMenu/main.scss';
 
-/*-----ProductsConteiner-----*/
-@import '../components/ProductsConteiner/main.scss';
+/*-----CategoriesConteiner-----*/
+@import '../components/CategoriesContainer/main.scss';
 
 /*-----CategoryItem-----*/
-@import '../components/Category/main.scss';
+@import '../components/CategoryItem/main.scss';
+
+/*-----ProductsContainer-----*/
+@import '../components/ProductsContainer/main.scss';
+
+/*-----ProductItem-----*/
+@import '../components/ProductItem/main.scss';
+
+@import '../components/ProductItemSlider/main.scss';
+
+/*-----Breadcrumbs-----*/
+@import '../components/Breadcrumbs/main.scss';

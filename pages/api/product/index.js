@@ -13,7 +13,8 @@ handler
   .use(replacer())
 
   .get(async (req, res) => {
-    await getProducts(req, res)
+    const { parentChpu, productChpu } = req.query
+    if (parentChpu) return await getProducts(req, res, parentChpu)
   })
 
   .post(async (req, res) => {

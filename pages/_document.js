@@ -5,7 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ru">
         <Head>
-          <meta name="description" content="Магазин светотехники"></meta>
+          {/* <meta name="description" content="Магазин светотехники"></meta> */}
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
             rel="stylesheet"
