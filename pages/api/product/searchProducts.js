@@ -1,6 +1,10 @@
 import Products from '../../../models/productModel'
 
-const searchProducts = async ({ parent = '' } = { parent: '' }) => {
+const searchProducts = async (
+  { parent = '', productChpu = '' } = { parent: '', productChpu: '' }
+) => {
+  const match = getMatch(parent, productChpu)
+
   try {
     const products = await Products.aggregate([
       {
@@ -78,12 +82,7 @@ const searchProducts = async ({ parent = '' } = { parent: '' }) => {
           removed: '$removed.value',
         },
       },
-      {
-        $match: {
-          parent_id: parent,
-          removed: false,
-        },
-      },
+      match,
       {
         $project: {
           removed: 0,
@@ -105,6 +104,24 @@ const searchProducts = async ({ parent = '' } = { parent: '' }) => {
     return { products }
   } catch (errProducts) {
     return { errProducts }
+  }
+}
+
+const getMatch = (parent, productChpu) => {
+  if (parent !== '') {
+    return {
+      $match: {
+        parent_id: parent,
+        removed: false,
+      },
+    }
+  } else {
+    return {
+      $match: {
+        chpu: productChpu,
+        removed: false,
+      },
+    }
   }
 }
 

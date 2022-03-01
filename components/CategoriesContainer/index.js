@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import CategoryItem from '../CategoryItem'
-import { getData } from '../../utils/fetchData'
 import { NextSeo } from 'next-seo'
 
-const CategoriesConteiner = ({
+const CategoriesContainer = ({
   categories,
   parent = { name: '' },
   children,
@@ -25,23 +24,12 @@ const CategoriesConteiner = ({
       </div>
       {children}
 
-      <p
+      <div
         className="c-catalog__description"
-        dangerouslySetInnerHTML={{ __html: parent?.description }}
-      ></p>
+        dangerouslySetInnerHTML={{ __html: parent.description }}
+      ></div>
     </>
   )
 }
 
-export async function getServerSideProps(context) {
-  const chpu = encodeURIComponent(context.query.categoryChpu)
-  const res = await getData(`/category?categoryChpu=${chpu}`)
-
-  return {
-    props: {
-      parent: res.category,
-    },
-  }
-}
-
-export default CategoriesConteiner
+export default CategoriesContainer

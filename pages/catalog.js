@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { getData } from '../../utils/fetchData'
-import CategoriesContainer from '../../components/CategoriesContainer'
-import Breadcrumbs from '../../components/Breadcrumbs'
+import { getData } from '../utils/fetchData'
+import CategoriesContainer from '../components/CategoriesContainer'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 const Catalog = (props) => {
   const [categories, setCategories] = useState(props.categoryProps)
   const initBreadcrumbs = [
     { name: 'home', chpu: '/' },
-    { name: 'Каталог', chpu: 'catalog' },
+    { name: 'Каталог', chpu: '/catalog' },
   ]
 
   useEffect(() => {

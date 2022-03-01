@@ -10,9 +10,7 @@ import NavBar from '../NavBar'
 const SideMenu = () => {
   const { state, dispatch } = useContext(DataContext)
   const { sideMenuActive, burgerRef } = state
-  // const [innerRef, setInnerRef] = useState()
   const [hoverItem, setHoverItem] = useState({ top: 0 })
-  // const sideMenuWraper = useRef()
 
   const handlerHover = (e) => {
     if (!e.target) return
@@ -23,10 +21,6 @@ const SideMenu = () => {
   const close = () => {
     dispatch({ type: ACTIONS.SIDE_MENU_CLOSE })
   }
-
-  // const toggle = () => {
-  //   dispatch({ type: ACTIONS.SIDE_MENU_TOGGLE })
-  // }
 
   const isSideMenuActive = () => {
     return sideMenuActive ? 'active' : ''
@@ -59,7 +53,6 @@ const SideMenu = () => {
             />
           </NavBar>
         </ScrollSideMenu>
-        {/* </nav> */}
       </div>
     </>
   )

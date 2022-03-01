@@ -27,9 +27,9 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className="c-product">
-      <Link href={`/${product.chpu}`}>
+      <Link href={`/product/${product.chpu}`}>
         <a className="link-block">
-          <div className="c-products__slider image-slider">
+          <div className="c-product__slider image-slider">
             {product.images.length > 1
               ? product.images.map((el, index) => {
                   if (index > 4) return null
@@ -85,7 +85,7 @@ const ProductItem = ({ product }) => {
           <div className="c-product__title c-title">
             <span className="c-title__text">{product.name}</span>
           </div>
-          <div className="c-products__inStock">Есть в наличии</div>
+          <div className="c-product__inStock">Есть в наличии</div>
           <div className="c-product__price-info">
             <div className="c-product__price-wrapper">
               {product.sale && getFakePrice() ? (

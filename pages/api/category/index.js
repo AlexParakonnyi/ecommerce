@@ -17,6 +17,8 @@ handler
 
     if (parentChpu) return await getCategories(req, res, parentChpu)
     if (categoryChpu) return await getCategory(req, res, categoryChpu)
+
+    return { err: 'notFound' }
   })
 
   .post(async (req, res) => {

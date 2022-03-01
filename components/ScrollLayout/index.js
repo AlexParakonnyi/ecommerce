@@ -5,6 +5,7 @@ import ACTIONS from '../../Store/Actions'
 const ScrollLayout = ({ children }) => {
   const progress = useRef(null)
   const scroll = useRef(null)
+  const slider = useRef(null)
 
   const { state, dispatch } = useContext(DataContext)
   const { scrollMarkPage, sideMenuActive } = state
@@ -24,6 +25,7 @@ const ScrollLayout = ({ children }) => {
     const scrollTop = scroll.current?.scrollTop
     const progressHeight = (scrollTop * 100) / totalHeight
     progress.current.style.height = progressHeight + '%'
+    // slider.current.style.top = progressHeight + '%'
   }
 
   return (
@@ -34,6 +36,7 @@ const ScrollLayout = ({ children }) => {
     >
       <div className="scrollLayout__progressbar" ref={progress}></div>
       <div className="scrollLayout__scrollPath"></div>
+      {/* <div className="scrollLayout__slider" ref={slider}></div> */}
       <section className="c-container">{children}</section>
     </div>
   )

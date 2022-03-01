@@ -2,7 +2,6 @@ import React from 'react'
 import ProductItem from '../ProductItem'
 
 const ProductsContainer = ({ products }) => {
-  // console.log(products[0])
   return (
     <>
       <div className="c-products">

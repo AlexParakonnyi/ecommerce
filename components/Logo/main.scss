@@ -3,6 +3,10 @@
   justify-content: flex-start;
   margin-right: 10px;
 
+  &:hover {
+    filter: brightness(0.8);
+  }
+
   @media (max-width: $breakpoint-extra-small) {
     // margin-right: 10px;
   }

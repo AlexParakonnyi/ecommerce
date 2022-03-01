@@ -52,11 +52,11 @@ async function processingImage(images) {
 
         fs.rename(tmpFileName, `${imgPath}${fileNameObj.base}`)
 
-        console.log(`Image ${el.StringName} successfully saved`)
+        console.log(`Image ${el.name} successfully saved`)
 
         return { name: String(fileNameObj.base) }
       } catch (err) {
-        console.log(`Failed downloading image: ${el.Name} ${err.message}`)
+        console.log(`Failed downloading image: ${el.name} ${err.message}`)
         return { name: null }
       }
     })

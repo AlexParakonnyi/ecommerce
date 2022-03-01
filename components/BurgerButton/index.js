@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useEffect } from 'react'
+import React, { useRef, useContext, useEffect } from 'react'
 import { DataContext } from '../../Store/GlobalState'
 import ACTIONS from '../../Store/Actions'
 
@@ -11,8 +11,8 @@ const BurgerButton = ({ classList }) => {
     dispatch({ type: ACTIONS.IT_IS_BURGER, payload: burger })
   }, [])
 
-  const toggleBurger = () => {
-    console.log('kdjfkdjf')
+  const toggleBurger = (e) => {
+    e.stopPropagation()
     dispatch({ type: ACTIONS.SIDE_MENU_TOGGLE })
   }
 

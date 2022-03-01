@@ -19,13 +19,9 @@ export const DataProvider = ({ children }) => {
   useEffect(async () => {
     const firstLogin = localStorage.getItem('firstLogin')
     if (firstLogin) {
-      // dispatch({ type: ACTIONS.LOADING_ON })
-
       const res = await getData('auth/accessToken')
 
       if (res.err) return localStorage.removeItem('firstLogin')
-
-      // dispatch({ type: ACTIONS.LOADING_OFF })
 
       dispatch({
         type: ACTIONS.AUTH,

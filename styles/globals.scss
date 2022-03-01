@@ -38,7 +38,8 @@ img {
 }
 
 /*-----main scroll container-----*/
-@import '../components/ScrollLayout/main.scss';
+// @import '../components/ScrollLayout/main.scss';
+@import '../components/ScrollLayout-copy/main.scss';
 
 /*-----scrollSideMenu-----*/
 @import '../components/ScrollSideMenu/main.scss';
@@ -89,3 +90,6 @@ img {
 
 /*-----Breadcrumbs-----*/
 @import '../components/Breadcrumbs/main.scss';
+
+/*-----ProductCard-----*/
+@import '../components/ProductCard/main.scss';

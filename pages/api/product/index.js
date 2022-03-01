@@ -4,6 +4,7 @@ import checkPostToken from '../../../middleware/checkPostToken'
 import replacer from '../../../middleware/replacer'
 import getProducts from './getProducts'
 import createProducts from './createProducts'
+import getProduct from './getProduct'
 
 const handler = nextConnect()
 
@@ -15,6 +16,9 @@ handler
   .get(async (req, res) => {
     const { parentChpu, productChpu } = req.query
     if (parentChpu) return await getProducts(req, res, parentChpu)
+    if (productChpu) return await getProduct(req, res, productChpu)
+
+    return { err: 'notFound' }
   })
 
   .post(async (req, res) => {

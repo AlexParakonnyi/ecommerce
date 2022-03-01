@@ -1,9 +1,7 @@
-@import '../../styles/variables.scss';
-
 .header {
   position: fixed;
   width: 100%;
-  top: 0;
+  top: 3px;
   left: 0;
   z-index: 93;
   height: $header-height-large;
@@ -40,5 +38,18 @@
 @media (max-width: $breakpoint-medium) {
   .header {
     height: $header-height-small;
+  }
+}
+
+.header__children-wrapper {
+  width: 100%;
+  height: calc(100vh - 63px);
+  position: fixed;
+  left: 0;
+  top: 63px;
+
+  @media (max-width: $breakpoint-medium) {
+    height: calc(100vh - 53px);
+    top: 53px;
   }
 }

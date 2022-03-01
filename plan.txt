@@ -15,3 +15,4 @@ filter
 search
 ssl certificate
 easy auth with every response from server and check it in every request on server
+404

@@ -15,7 +15,7 @@ const Group = ({
   const [products, setProducts] = useState(productsProps)
   const initBreadcrumbs = [
     { name: 'home', chpu: '/' },
-    { name: 'Каталог', chpu: 'catalog' },
+    { name: 'Каталог', chpu: '/catalog' },
   ]
   const [breadcrumbs, setBreadcrambs] = useState(initBreadcrumbs)
 
@@ -50,12 +50,15 @@ const Group = ({
 }
 
 export async function getServerSideProps(context) {
-  const parentChpu = encodeURIComponent(context.query.product)
+  const parentChpu = encodeURIComponent(context.query.group)
   const urlParent = `/category?parentChpu=${parentChpu}`
   const resParent = await getData(urlParent)
+  console.log('test')
 
   const urlParentProducts = `/product?parentChpu=${parentChpu}`
   const resProducts = await getData(urlParentProducts)
+
+  console.log('$$$', resProducts)
 
   if (!resParent.category) return { notFound: true }
 

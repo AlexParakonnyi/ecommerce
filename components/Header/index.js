@@ -7,9 +7,9 @@ import Logo from '../Logo'
 import Catalog from '../CatalogButton'
 import Search from '../Search'
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
-    <div className="wrapper">
+    <div className="header__wrapper">
       <header className="header">
         <div className="header__container">
           <div className="header__body c-container">
@@ -27,6 +27,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <div className="header__children-wrapper">{children}</div>
     </div>
   )
 }
